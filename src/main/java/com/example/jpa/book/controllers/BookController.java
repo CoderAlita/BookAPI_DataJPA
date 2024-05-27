@@ -20,7 +20,7 @@ public class BookController {
         List<Book> list = bookService.getBooks();
         if (list.size() <= 0)
             return ResponseEntity.notFound().build();
-        return ResponseEntity.of(Optional.of(list));
+        return ResponseEntity.status(HttpStatus.CREATED).body(list);
     }
 
     @GetMapping("/books/{id}")
