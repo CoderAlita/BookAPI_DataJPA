@@ -1,5 +1,6 @@
 package com.example.jpa.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,6 +10,7 @@ public class Book {
     private int id;
     private String Title;
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Author author;
 
     public Book() {

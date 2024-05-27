@@ -1,9 +1,7 @@
 package com.example.jpa.book.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 @Entity
 public class Author {
@@ -13,6 +11,18 @@ public class Author {
     private String firstName;
     private String lastName;
     private String language;
+
+    @OneToOne(mappedBy = "author")
+    @JsonBackReference
+    private Book book;
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
     public Author() {
     }
