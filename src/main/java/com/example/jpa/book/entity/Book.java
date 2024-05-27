@@ -1,22 +1,20 @@
 package com.example.jpa.book.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    String Title;
-    String author;
+    private int id;
+    private String Title;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Author author;
 
     public Book() {
     }
 
-    public Book(int id, String author, String title) {
+    public Book(int id, Author author, String title) {
         this.id = id;
         this.author = author;
         Title = title;
@@ -38,11 +36,11 @@ public class Book {
         Title = title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
