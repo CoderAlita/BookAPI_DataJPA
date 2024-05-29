@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class FileUploaderController {
@@ -28,8 +29,13 @@ public class FileUploaderController {
 
 //            file upload code
             boolean f =uploadHelper.upload(file);
-            if(f)
-                return ResponseEntity.ok("File uploded successfully !");
+            if(f) {
+//                return ResponseEntity.ok("File uploded successfully !");
+                return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").
+                        path(file.getOriginalFilename()).toUriString());
+
+            }
+
 
         }catch (Exception e){
             e.printStackTrace();

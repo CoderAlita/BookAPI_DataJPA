@@ -1,5 +1,6 @@
 package com.example.jpa.book.helper;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +14,14 @@ import java.nio.file.StandardCopyOption;
 @Component
 public class UploadHelper {
 
-    public final String PATH="C:\\Users\\Win 11\\Desktop\\Spring_boot\\book\\src\\main\\resources\\static";
+//    public final String PATH="C:\\Users\\Win 11\\Desktop\\Spring_boot\\book\\src\\main\\resources\\static\\image";
+
+    public final String PATH = new ClassPathResource("static").getFile().getAbsolutePath();
+
+    public  UploadHelper() throws Exception{
+
+    }
+
     public boolean upload(MultipartFile file){
 
         boolean f=false;
